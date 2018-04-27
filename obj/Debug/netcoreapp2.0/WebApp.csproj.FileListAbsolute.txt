@@ -1,0 +1,12 @@
+/home/nurs/wk/nurs/WebApp/bin/Debug/netcoreapp2.0/app.db
+/home/nurs/wk/nurs/WebApp/bin/Debug/netcoreapp2.0/WebApp.deps.json
+/home/nurs/wk/nurs/WebApp/bin/Debug/netcoreapp2.0/WebApp.runtimeconfig.json
+/home/nurs/wk/nurs/WebApp/bin/Debug/netcoreapp2.0/WebApp.runtimeconfig.dev.json
+/home/nurs/wk/nurs/WebApp/bin/Debug/netcoreapp2.0/WebApp.dll
+/home/nurs/wk/nurs/WebApp/bin/Debug/netcoreapp2.0/WebApp.pdb
+/home/nurs/wk/nurs/WebApp/obj/Debug/netcoreapp2.0/WebApp.csproj.CoreCompileInputs.cache
+/home/nurs/wk/nurs/WebApp/obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
+/home/nurs/wk/nurs/WebApp/obj/Debug/netcoreapp2.0/WebApp.AssemblyInfoInputs.cache
+/home/nurs/wk/nurs/WebApp/obj/Debug/netcoreapp2.0/WebApp.AssemblyInfo.cs
+/home/nurs/wk/nurs/WebApp/obj/Debug/netcoreapp2.0/WebApp.dll
+/home/nurs/wk/nurs/WebApp/obj/Debug/netcoreapp2.0/WebApp.pdb
