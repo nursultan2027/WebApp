@@ -24,53 +24,26 @@ namespace WebApp.Controllers
             return View(await _context.Employee.ToListAsync());
         }
         
-        public async Task<IActionResult> IndexClient(bool Chbx1, bool Chbx2, bool Chbx3, bool Chbx4, bool Chbx5,string searchString)
+        public IActionResult IndexClient(bool Chbx1, bool Chbx2, bool Chbx3, bool Chbx4, bool Chbx5,string searchString)
         {
             ViewBag.Count = _context.Employee.Count();
             var courses = from c in _context.Employee
                             select c;
             if(!string.IsNullOrEmpty(searchString))
             {
-               courses = courses.Where(c=> c.Name.Contains(searchString)||c.Category==searchString);
+               courses = courses.Where(c=> c.Name.Contains(searchString)||c.Category.Contains(searchString)||c.Discription.Contains(searchString));
             }
             if(!Chbx5)
             {
                 if(Chbx1)
                 {
-                    if(Chbx2)
-                    {
-                        if(Chbx3)
-                        {
-                            courses = courses.Where(c=> c.Category == "Офис" && c.Category == "Ремонт дома" && c.Category == "Авто");
-                        }
-                        else
-                        {
-                            courses = courses.Where(c=> c.Category == "Офис" && c.Category == "Ремонт дома");
-                        }
-                    }
-                    else 
-                    {
-                        if(Chbx3)
-                        {
-                            courses = courses.Where(c=> c.Category == "Офис" && c.Category == "Авто");
-                        }
-                        else
-                        {
-                            courses = courses.Where(c=> c.Category == "Офис");
-                        }
-                    }
+                    courses = courses.Where(c=> c.Category == "Офис");
+                    
                 }
                 else {
                     if (Chbx2)
                     {
-                        if (Chbx3)
-                        {
-                            courses = courses.Where(c=> c.Category == "Ремонт дома" && c.Category == "Авто");
-                        }
-                        else 
-                        {
                             courses = courses.Where(c=> c.Category == "Ремонт дома" );
-                        }
                     }
                     else
                     {

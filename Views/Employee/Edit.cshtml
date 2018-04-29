@@ -23,10 +23,18 @@
                 <input asp-for="Discription" class="form-control" />
                 <span asp-validation-for="Discription" class="text-danger"></span>
             </div>
-            <div class="form-group">
+             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
+                <input list="catList"  class="form-control"  asp-for="Category" placeholder="Category">
+                <datalist id="catList">
+                <option>Офис</option>
+                <option>Ремонт дома</option>
+                <option>Авто</option>
+                <option>Все</option>
+                </datalist>
+
                 <span asp-validation-for="Category" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="TelNumber" class="control-label"></label>
@@ -51,7 +59,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="IndexClient">Back to List</a>
 </div>
 
 @section Scripts {
