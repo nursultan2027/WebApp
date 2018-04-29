@@ -1,13 +1,16 @@
 @model IEnumerable<WebApp.Models.Employees>
+@using WebApp.Models
 
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="row">
-
 <div class="col-xs-2 col-sm-2 col-md-3 col-lg-3 push-left">
 
+<div class="sid">
     <div class="sidebar-nav">
       <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
@@ -22,23 +25,62 @@
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a>Поиск</a></li>
-            <li><a>По категории</a></li>
-            <li><a>По отзывам</a></li>
-            <li><a>Сортировка</a></li>
             <form class="navbar-form" role="search">
                 <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" name="q">
+                <input type="text" class="form-control" placeholder="Search" name="searchString">
                 <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                <button class="btn btn-default" asp-action="IndexClient" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </div>
                 </div>
             </form>
-            <li><a>Reviews <span class="badge">5000</span></a></li>
+            <li>
+                <a>
+                    <div class="dropdown">
+                    <span>Категории</span>
+                    <div class="dropdown-content">
+                        <form >
+                        <ul>
+                            <li class="active">
+                                <label> Офис </label>
+                                <div class="pull-right">
+                                 @Html.CheckBox("Chbx1") 
+                                </div>
+                            </li>
+                            <li class="active">
+                                <label> Авто </label>
+                                <div class="pull-right">
+                                @Html.CheckBox("Chbx3")
+                                </div>
+                            </li>
+                            <li class="active">
+                                <label> Дом </label>
+                                <div class="pull-right">
+                                @Html.CheckBox("Chbx2")
+                                </div>
+                            </li>
+                            <li class="active">
+                                <label> Все </label>
+                                <div class="pull-right">
+                                @Html.CheckBox("Chbx5")
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="text-center">
+                        <input asp-action="IndexClient" type="submit" value="Сортировать" class="btn btn-default"/>
+                        </div>
+                        </form>
+                    </div>
+                    </div>
+                </a>
+            </li>
+            <li><a>Объявлений на сайте <span class="badge">@ViewBag.count</span></a></li>
           </ul>
         </div>
       </div>
     </div>
 
+</div>
 </div>
 <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9 pull-right">
 <div class="row">
@@ -49,7 +91,7 @@
         <div class="overlay">
                 <h2>@item.Name</h2>
 				<p>
-					<a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+					<a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> 
 				</p>
         </div>
     </div>
@@ -70,11 +112,11 @@
     <div>
         @Html.DisplayFor(modelItem => item.Price)
     </div>
-        @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Menager"))
+        @if (@item.Owner==@UserManager.GetUserName(User))
         {
         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
         }
-        <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+        <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> 
         @if (ViewContext.HttpContext.User.IsInRole("Admin"))
         {
             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
